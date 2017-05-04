@@ -57,8 +57,14 @@ get('/checkout') do
 end
 
 post('/checkout') do
-  @patron = params.fetch("patron_id")
-  @book = params.fetch("book_id")
-  @checkout = Checkout_Titles.new({:patron_id => patron_id, :book_id => book_id})
-  
+  patron_id = params.fetch("patron_id")
+  book_id = params.fetch("book_id")
+  checkout = Checkout_Titles.new({:patron_id => patron_id, :book_id => book_id})
+  checkout.save()
+  erb(:index)
+end
+
+get('/checkout_form') do
+  @checkouts = Checkout_Titles.all()
+  erb(:checkout_form)
 end

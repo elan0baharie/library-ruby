@@ -18,11 +18,17 @@ describe(Checkout_Titles) do
 
   describe("#save") do
     it("will save a checkout record") do
-
-
       test_checkout = Checkout_Titles.new({:id => nil, :patron_id => 1, :book_id => 3, :checkout_date => "2015-02-12", :due_date => "2015-02-12"})
       test_checkout.save()
-      expect(test_checkout.id()).to(be_an_instance_of(Fixnum))
+      expect(test_checkout.checkout_date()).to(eq("2017-05-04"))
+    end
+  end
+
+  describe("#due_date") do
+    it("will return the due date for the checkout log") do
+      test_checkout = Checkout_Titles.new({:id => nil, :patron_id => 1, :book_id => 3, :checkout_date => "2015-02-12", :due_date => "2015-02-12"})
+      test_checkout.save()
+      expect(test_checkout.due_date()).to(eq("2017-05-18"))
     end
   end
 

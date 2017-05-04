@@ -3,11 +3,10 @@ class Checkout_Titles
   attr_accessor(:id, :patron_id, :book_id, :checkout_date, :due_date)
 
   define_method(:initialize) do |attribute|
-    @id = attribute.fetch(:id)
+
     @patron_id = attribute.fetch(:patron_id)
     @book_id = attribute.fetch(:book_id)
-    @checkout_date = attribute.fetch(:checkout_date)
-    @due_date = attribute.fetch(:due_date)
+
   end
 
   def ==(another_checkout)
@@ -29,6 +28,12 @@ class Checkout_Titles
   end
 
   def save
+    current_time = Date.today
+    @checkout_date = current_time.to_s
+    due_date = current_time + 14
+    @due_date = due_date.to_s
+    print [@checkout_date, @due_date]
+
     result = DB.exec("INSERT INTO checkouts (patron_id, book_id, checkout_date, due_date) VALUES (#{@patron_id}, #{@book_id}, '#{@checkout_date}', '#{@due_date}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
   end
@@ -42,26 +47,5 @@ class Checkout_Titles
     end
     found_checkout
   end
-  #
-  # def due_date(attribute, )
-  #   @checkout_date = attribute.fetch(:checkout_date)
-  #   @id = self.id()
-  #   current_time = Date.today
-  #   @checkout_date = current_time
-  #   due_date = current_time + 14
-  #   @due_date = due_date
-  #   DB.exec("UPDATE checkouts SET checkout_date = #{@checkout_date}, due_date = #{@due_date} WHERE id = #{self.id};")
-  # end
-
-  def checkout_date_maker
-    @current_time = Date.today
-    print @current_time
-    @current_time.to_s()
-    @id = self.id().to_i()
-    DB.exec("UPDATE checkouts SET checkout_date = '#{@current_time}' WHERE id = #{@id};")
-  end
-
-
-
 
 end

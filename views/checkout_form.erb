@@ -1,0 +1,8 @@
+<% @checkouts.each() do |checkout| %>
+  <ul>
+    <li><%= checkout.patron_id()%></li>
+    <li><%= checkout.book_id()%></li>
+    <li><%= checkout.checkout_date().to_s() %></li>
+    <li><%= checkout.due_date().to_s() %></li>
+  </ul>
+<% end %>

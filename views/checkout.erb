@@ -1,3 +1,5 @@
+<% if @books.any? && @patrons.any? %>
+
 <form action="/checkout" method="post">
   <label for="patron_id">Select your name</label>
   <select id="patron_id" name = "patron_id" type = "text">
@@ -13,3 +15,7 @@
   </select>
   <button type="submit">Checkout a book</button>
 </form>
+
+<% else %>
+  <h3>You lack either patrons or books </h3>
+<% end %>
