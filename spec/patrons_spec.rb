@@ -41,18 +41,12 @@ describe(Patrons) do
     it("will return all books with the patron's id") do
       test_patron = Patrons.new({:id => nil, :name => "Stu", :book_id => 1})
       test_patron.save()
-      test_book1 = Books.new({:id => nil, :title => "Sherlock Holmes", :author => "Sir Arthur Conan Doyle", :checkout_date => '2017-01-01', :patron_id => test_patron.id()})
+      test_book1 = Books.new({:id => nil, :title => "Sherlock Holmes", :author => "Sir Arthur Conan Doyle", :patron_id => test_patron.id()})
       test_book1.save()
-      test_book2 = Books.new({:id => nil, :title => "Where the Wild Things Are", :author => "Maurice Sendak", :checkout_date => '2017-01-01', :patron_id => test_patron.id()})
+      test_book2 = Books.new({:id => nil, :title => "Where the Wild Things Are", :author => "Maurice Sendak", :patron_id => test_patron.id()})
       test_book2.save()
       expect(test_patron.book()).to(eq([test_book1, test_book2]))
     end
   end
 
-  describe("#due_date")
-  it("will return a due date for a book") do
-    test_book1 = Books.new({:id => nil, :title => "Sherlock Holmes", :author => "Sir Arthur Conan Doyle", :checkout_date => '2017-01-01', :patron_id => 1})
-    test_book1.save()
-    expect(test_book1.due_date()).to(eq(2017-05-04))
-  end
 end

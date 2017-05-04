@@ -46,12 +46,11 @@ class Patrons
       id = book.fetch('id').to_i()
       title = book.fetch('title')
       author = book.fetch('author')
-      checkout_date = book.fetch('checkout_date')
       patron_id = book.fetch('patron_id').to_i()
-      saved_book.push(Books.new({:id => id, :title => title, :author => author, :checkout_date => checkout_date, :patron_id => patron_id}))
+      saved_book.push(Books.new({:id => id, :title => title, :author => author, :patron_id => patron_id}))
     end
     saved_book
   end
 
-  
+
 end

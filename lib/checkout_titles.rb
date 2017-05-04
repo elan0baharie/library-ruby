@@ -29,7 +29,7 @@ class Checkout_Titles
   end
 
   def save
-    result = DB.exec("INSERT INTO checkouts (patron_id, book_id, checkout_date) VALUES (#{@patron_id}, #{@book_id}, '#{@checkout_date}', '#{@due_date}') RETURNING id;")
+    result = DB.exec("INSERT INTO checkouts (patron_id, book_id, checkout_date, due_date) VALUES (#{@patron_id}, #{@book_id}, '#{@checkout_date}', '#{@due_date}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
   end
 
@@ -42,5 +42,25 @@ class Checkout_Titles
     end
     found_checkout
   end
+  #
+  # def due_date(attribute, )
+  #   @checkout_date = attribute.fetch(:checkout_date)
+  #   @id = self.id()
+  #   current_time = Date.today
+  #   @checkout_date = current_time
+  #   due_date = current_time + 14
+  #   @due_date = due_date
+  #   DB.exec("UPDATE checkouts SET checkout_date = #{@checkout_date}, due_date = #{@due_date} WHERE id = #{self.id};")
+  # end
+
+  def checkout_date_maker
+    @current_time = Date.today
+    print @current_time
+    @id = self.id()
+    DB.exec("UPDATE checkouts SET checkout_date = '#{@current_time}' WHERE id = #{@id};")
+  end
+
+
+
 
 end
