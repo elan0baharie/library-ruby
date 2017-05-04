@@ -11,7 +11,7 @@ describe(Books) do
 
   describe("#save") do
     it("adds a books to a catalog of saved books") do
-      test_book = Books.new({:id => "nil", :title => "Sherlock Holmes", :author => "Sir Arthur Conan Doyle", :patron_id => 0})
+      test_book = Books.new({:id => nil, :title => "Sherlock Holmes", :author => "Sir Arthur Conan Doyle", :patron_id => 0})
       test_book.save()
       expect(Books.all()).to(eq([test_book]))
     end

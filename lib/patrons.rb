@@ -1,14 +1,14 @@
 class Patrons
-  attr_accessor(:id, :name, :book_id)
+  attr_accessor(:id, :name)
 
   def initialize(attribute)
     @id = attribute.fetch(:id)
     @name = attribute.fetch(:name)
-    @book_id = attribute.fetch(:book_id)
+
   end
 
   def ==(other_patron)
-    (self.id().==(other_patron.id())) && (self.name().==(other_patron.name())) && (self.book_id().==(other_patron.book_id()))
+    (self.id().==(other_patron.id())) && (self.name().==(other_patron.name()))
   end
 
 
@@ -18,14 +18,13 @@ class Patrons
     all_patrons.each() do |patron|
       id = patron.fetch("id").to_i
       name = patron.fetch("name")
-      book_id = patron.fetch("book_id")
-      saved_patrons.push(Patrons.new({:id => id, :name => name, :book_id => book_id}))
+      saved_patrons.push(Patrons.new({:id => id, :name => name}))
     end
     saved_patrons
   end
 
   def save
-    result = DB.exec("INSERT INTO patrons (name, book_id) VALUES ('#{@name}', #{@book_id}) RETURNING id;")
+    result = DB.exec("INSERT INTO patrons (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
   end
 
@@ -51,6 +50,5 @@ class Patrons
     end
     saved_book
   end
-
 
 end

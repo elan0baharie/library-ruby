@@ -1,0 +1,15 @@
+<form action="/checkout" method="post">
+  <label for="patron_id">Select your name</label>
+  <select id="patron_id" name = "patron_id" type = "text">
+    <% @patrons.each() do |patron| %>
+    <option value="<%= patron.id()%>"> <%= patron.name() %></option>
+    <% end %>
+  </select>
+  <label for="patron_id">Book Title:</label>
+  <select id="book_id" name = "book_id" type = "text">
+    <% @books.each() do |book| %>
+    <option value="<%= book.id()%>"> <%= book.title() %></option>
+    <% end %>
+  </select>
+  <button type="submit">Checkout a book</button>
+</form>

@@ -1,0 +1,22 @@
+<% if @books.any? %>
+<h3>All books in catalog:</h3>
+  <ul>
+    <% @books.each() do |book| %>
+      <li><%= book.title() %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No books yet.</h3>
+<% end %>
+
+<form action="/books" method="post">
+  <div class="form-group">
+    <label for="title">Book title:</label>
+    <input type="type" id="title" name="title">
+    <label for="author">Book author:</label>
+    <input type="type" id="author" name="author">
+  </div>
+  <button type="submit">Click</button>
+</form>
+
+<p><a href="/">Home</a></p>

@@ -1,0 +1,21 @@
+<% if @patrons.any? %>
+<h3>Patrons:</h3>
+<ul>
+  <% @patrons.each() do |patron| %>
+  <li><%= patron.name() %></li>
+  <% end %>
+</ul>
+
+<% else %>
+<h3> There are no patrons yet</h3>
+<% end %>
+
+<form action="/patrons" method="post">
+  <div class="form-group">
+    <label for="name">Patron's name</label>
+    <input type = "text" id = "name" name="name">
+  </div>
+  <button type="submit">Add a patron</button>
+</form>
+
+<p><a href="/">Home</a></p>

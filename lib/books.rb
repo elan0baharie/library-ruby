@@ -52,15 +52,4 @@ class Books
     DB.exec("DELETE FROM books WHERE id= #{self.id()};")
   end
 
-  def patron()
-    saved_patron = []
-    patrons = DB.exec("SELECT * FROM patrons WHERE book_id = #{self.id()};")
-    patrons.each() do |patron|
-      name = patron.fetch('name')
-      book_id = patron.fetch('book_id').to_i()
-      saved_patron.push(Patrons.new({:name => name, :book_id => book_id}))
-    end
-    saved_patron
-  end
-
 end

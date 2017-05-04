@@ -56,7 +56,8 @@ class Checkout_Titles
   def checkout_date_maker
     @current_time = Date.today
     print @current_time
-    @id = self.id()
+    @current_time.to_s()
+    @id = self.id().to_i()
     DB.exec("UPDATE checkouts SET checkout_date = '#{@current_time}' WHERE id = #{@id};")
   end
 
