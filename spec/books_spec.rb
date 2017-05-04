@@ -9,7 +9,6 @@ describe(Books) do
     end
   end
 
-
   describe("#save") do
     it("adds a books to a catalog of saved books") do
       test_book = Books.new({:id => "nil", :title => "Sherlock Holmes", :author => "Sir Arthur Conan Doyle", :checkout_date => '2017-01-01', :patron_id => 0})
@@ -50,15 +49,4 @@ describe(Books) do
     end
   end
 
-  describe("#patron") do
-    it("shows all books of a patron") do
-      # test_book1 = Books.new({:id => nil, :title => "Sherlock Holmes", :author => "Sir Arthur Conan Doyle", :checkout_date => '2017-01-01', :patron_id => test_patron1.id()})
-      # test_book1.save()
-      # test_patron1 = Patrons.new({:id => nil, :name => "Bob", :book_id => 1})
-      # test_patron1.save()
-      # test_patron2 = Patrons.new({:id => nil, :name => "Bob", :book_id => 1})
-      # test_patron2.save()
-      # expect(test_book1.patron()).to(eq([test_patron1, test_patron2]))
-    end
-  end
 end

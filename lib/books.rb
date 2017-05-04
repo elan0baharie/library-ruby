@@ -63,4 +63,14 @@ class Books
     end
     saved_patron
   end
+
+  def due_date (attribute)
+    checkout_date
+    current_time = Date.today
+    due_date = current_time + 14
+    due_date
+    @checkout_date = attribute.fetch(:checkout_date)
+    @id = self.id()
+    DB.exec("UPDATE books SET checkout_date = #{@checkout_date} WHERE checkout_date = #{@checkout_date};")
+  end
 end

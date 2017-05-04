@@ -7,3 +7,4 @@ gem('pry')
 gem('launchy')
 gem('capybara')
 gem('pg')
+ 
